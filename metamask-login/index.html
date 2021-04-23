@@ -1,0 +1,28 @@
+<html>
+  <head>
+    <title>Metamask Demo</title>
+
+    <script src="https://cdn.jsdelivr.net/npm/web3@latest/dist/web3.min.js"></script>
+    <script src="https://unpkg.com/moralis/dist/moralis.js"></script>
+  </head>
+
+  <body>
+    <button onclick="login()">Login with Metamask</button>
+
+    <script>
+      Moralis.initialize("xH8woSgV1y5TPUKkfG1eOLK2H222QJAG3zyejAY6"); // Application id from moralis.io
+      Moralis.serverURL = "https://0x8vrmkgqdmn.moralis.io:2053/server"; //Server url from moralis.io
+
+      async function login() {
+        console.log("login clicked");
+        var user = await Moralis.Web3.authenticate();
+        if (user) {
+          console.log(user);
+          user.set("nickname", "VITALIK");
+          user.set("fav_color", "blue");
+          user.save();
+        }
+      }
+    </script>
+  </body>
+</html>
